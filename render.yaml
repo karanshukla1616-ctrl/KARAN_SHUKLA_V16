@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: prime-hosting
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python premium_hosting_bot_updated.py
+    healthCheckPath: /health
+    envVars:
+      - key: HOST_BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: hosting-data
+      mountPath: /data
+      sizeGB: 1
